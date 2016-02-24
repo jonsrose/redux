@@ -11,6 +11,7 @@
         <button id="increment">+</button>
         <button id="decrement">-</button>
         <button id="incrementIfOdd">Increment if odd</button>
+        <button id="incrementIfEven">Increment if even</button>
         <button id="incrementAsync">Increment async</button>
       </p>
     </div>
@@ -56,6 +57,13 @@
             store.dispatch({ type: 'INCREMENT' })
           }
         })
+
+        document.getElementById('incrementIfEven')
+          .addEventListener('click', function () {
+            if (store.getState() % 2 == 0) {
+              store.dispatch({ type: 'INCREMENT' })
+            }
+          })
 
       document.getElementById('incrementAsync')
         .addEventListener('click', function () {
