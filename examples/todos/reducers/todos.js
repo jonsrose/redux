@@ -20,6 +20,7 @@ const todo = (state, action) => {
 }
 
 const todos = (state = [], action) => {
+  console.log("im in todos");
   switch (action.type) {
     case 'ADD_TODO':
       return [
@@ -30,7 +31,12 @@ const todos = (state = [], action) => {
       return state.map(t =>
         todo(t, action)
       )
+    case 'RECEIVE_TODOS':
+      console.log("receive_todos");
+      console.log(action.todos);
+      return action.todos;
     default:
+      console.log(`default: state = ${state}`)
       return state
   }
 }
