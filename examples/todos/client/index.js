@@ -6,9 +6,10 @@ import App from '../common/components/App'
 import { fetchTodos } from '../common/actions'
 import configureStore from '../common/store/configureStore'
 
-const store = configureStore()
+const initialState = window.__INITIAL_STATE__
+const store = configureStore(initialState)
 
-store.dispatch(fetchTodos())
+store.dispatch(fetchTodos()) // todo.jr take this out
 
 render(
   <Provider store={store}>
