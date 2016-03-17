@@ -1,3 +1,5 @@
+import { fetchTodos } from '../api/todos'
+
 let nextTodoId = 1000
 export const addTodoOptimistic = (text) => {
   return {
@@ -9,14 +11,11 @@ export const addTodoOptimistic = (text) => {
 
 export const fetchTodosAsync = () => {
   return dispatch => {
-    return fetch('http://0.0.0.0:3001/api/todos', {
-      method: 'get',
-      headers: new Headers({
-        'Accept': 'application/json'
-      })
-    })
-    .then(response => response.json())
-    .then(json => dispatch(receiveTodos(json)));
+    return fetchTodos(
+      json => {
+        dispatch(receiveTodos(json))
+      }
+    )
   }
 }
 
