@@ -21,7 +21,8 @@ export function addTodo(text) {
         'Accept': 'application/json'
       }),
       body: JSON.stringify({
-        text
+        text,
+        completed: false
       })
     }).then(response => {
       // you should probably get a real id for your new todo item here,
