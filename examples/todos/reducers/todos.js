@@ -51,7 +51,8 @@ const todos = (state = [], action) => {
     case 'RECEIVE_TODOS':
       console.log("receive_todos");
       console.log(action.todos);
-      return action.todos;
+      const todos = action.todos;
+      return [...todos];
     default:
       console.log(`default: state = ${state}`)
       return state
