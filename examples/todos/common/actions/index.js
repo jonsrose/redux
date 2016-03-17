@@ -7,7 +7,7 @@ export const addTodoOptimistic = (text) => {
   }
 }
 
-export const fetchTodos = () => {
+export const fetchTodosAsync = () => {
   return dispatch => {
     return fetch('http://0.0.0.0:3001/api/todos', {
       method: 'get',

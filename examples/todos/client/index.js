@@ -4,13 +4,13 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import configureStore from '../common/store/configureStore'
 import App from '../common/components/App'
-import { fetchTodos } from '../common/actions'
+import { fetchTodosAsync } from '../common/actions'
 
 const initialState = window.__INITIAL_STATE__
 const store = configureStore(initialState)
 const rootElement = document.getElementById('app')
 
-store.dispatch(fetchTodos()) // todo.jr take this out
+store.dispatch(fetchTodosAsync()) // todo.jr take this out
 
 render(
   <Provider store={store}>
