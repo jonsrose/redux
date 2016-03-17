@@ -1,9 +1,22 @@
-let nextTodoId = 0
+let nextTodoId = 1000
 export const addTodoOptimistic = (text) => {
   return {
     type: 'ADD_TODO',
-    id: nextTodoId++,
+    id: ++nextTodoId,
     text
+  }
+}
+
+export const fetchTodos = () => {
+  return dispatch => {
+    return fetch('http://0.0.0.0:3001/api/todos', {
+      method: 'get',
+      headers: new Headers({
+        'Accept': 'application/json'
+      })
+    })
+    .then(response => response.json())
+    .then(json => dispatch(receiveTodos(json)));
   }
 }
 
@@ -11,10 +24,9 @@ export const addTodoOptimistic = (text) => {
 // it will get called by the existing code when a new todo item should
 //  be added
 export function addTodo(text) {
-  return function(dispatch) {
+  return dispatch => {
     dispatch(addTodoOptimistic(text));
-    var headers = new Headers();
-    fetch('http://0.0.0.0:3001/api/todos', {
+    return fetch('http://0.0.0.0:3001/api/todos', {
       method: 'post',
       headers: new Headers({
         'Content-Type': 'application/json',
@@ -24,14 +36,13 @@ export function addTodo(text) {
         text,
         completed: false
       })
-    }).then(response => {
-      // you should probably get a real id for your new todo item here,
-      // and update your store, but we'll leave that to you
-      console.log(`response: ${response}`);
-    }).catch(err => {
+    })
+    .then(response => response.json())
+    .then(json => dispatch(addedTodo(json)))
+    .catch(err => {
       // Error: handle it the way you like, undoing the optimistic update,
       //  showing a "out of sync" message, etc.
-      console.log('error')
+      console.log(err)
     });
     // what you return here gets returned by the dispatch function that
     // used this action creator
@@ -61,17 +72,16 @@ export const receiveTodos = (json) => {
   }
 }
 
-export const fetchTodos = () => {
-  return dispatch => {
-    return fetch('http://0.0.0.0:3001/api/todos', {
-      method: 'get',
-      headers: new Headers({
-        'Accept': 'application/json'
-      })
-    })
-    .then(response => response.json())
-    .then(json => dispatch(receiveTodos(json)));
+export const addedTodo = (json) => {
+  console.log(json);
+  return {
+    type: 'ADDED_TODO',
+    todo: json,
+    id: nextTodoId
   }
 }
+
+
+
 
 
