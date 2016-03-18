@@ -22,6 +22,9 @@ const todo = (state, action) => {
         return state
       }
 
+      console.log(`set new state id = action.id = ${action.id}`);
+
+
       return Object.assign({}, state, {
         id: action.todo.id
       })

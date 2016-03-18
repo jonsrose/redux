@@ -4,7 +4,7 @@ let nextTodoId = 1000
 export const addTodoOptimistic = (text) => {
   return {
     type: 'ADD_TODO',
-    id: ++nextTodoId,
+    id: `${++nextTodoId}`,
     text
   }
 }
@@ -66,7 +66,7 @@ export const addedTodo = (json) => {
   return {
     type: 'ADDED_TODO',
     todo: json,
-    id: nextTodoId
+    id: `${nextTodoId}`
   }
 }
 
