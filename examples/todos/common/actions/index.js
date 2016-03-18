@@ -9,16 +9,6 @@ export const addTodoOptimistic = (text) => {
   }
 }
 
-export const fetchTodosAsync = () => {
-  return dispatch => {
-    return fetchTodos(
-      json => {
-        dispatch(receiveTodos(json))
-      }
-    )
-  }
-}
-
 // the async action creator uses the name of the old action creator, so
 // it will get called by the existing code when a new todo item should
 //  be added
