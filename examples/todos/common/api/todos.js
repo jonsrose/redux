@@ -1,3 +1,6 @@
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
+
 export function fetchTodos(callback) {
   // Rather than immediately returning, we delay our code with a timeout to simulate asynchronous behavior
   //setTimeout(() => {
@@ -7,9 +10,9 @@ export function fetchTodos(callback) {
   // API.getUser().then(user => callback(user))
   return fetch('http://0.0.0.0:3001/api/todos', {
     method: 'get',
-    headers: new Headers({
+    headers: {
       'Accept': 'application/json'
-    })
+    }
   })
   .then(response => response.json())
   .then(json => callback(json));

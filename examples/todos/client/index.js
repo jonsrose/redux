@@ -10,7 +10,7 @@ const initialState = window.__INITIAL_STATE__
 const store = configureStore(initialState)
 const rootElement = document.getElementById('app')
 
-store.dispatch(fetchTodosAsync()) // todo.jr take this out
+//store.dispatch(fetchTodosAsync()) // todo.jr take this out
 
 render(
   <Provider store={store}>
