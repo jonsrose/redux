@@ -28,13 +28,13 @@ app.use(handleRender)
 function handleRender(req, res) {
   console.log("handleRender")
   // Query our mock API asynchronously
-  fetchTodos(todos => {
+  fetchTodos(json => {
     // Read the counter from the request, if provided
     //const params = qs.parse(req.query)
     //const counter = parseInt(params.counter, 10) || apiResult || 0
 
     // Compile an initial state
-    const initialState = { todos }
+    const initialState = json
 
     // Create a new Redux store instance
     const store = configureStore(initialState)

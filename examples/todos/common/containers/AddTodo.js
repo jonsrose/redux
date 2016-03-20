@@ -5,6 +5,7 @@ import { addTodo } from '../actions'
 let AddTodo = ({ dispatch }) => {
   let input
 
+  console.log('AddToDo')
   return (
     <div>
       <form onSubmit={e => {

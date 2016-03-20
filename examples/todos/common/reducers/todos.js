@@ -33,31 +33,38 @@ const todo = (state, action) => {
   }
 }
 
-const todos = (state = [], action) => {
+const todos = (state = {}, action) => {
   console.log("im in todos");
+  let newTodos
   switch (action.type) {
     case 'ADD_TODO':
-      return [
-        ...state,
-        todo(undefined, action)
-      ]
+      newTodos = Object.assign({}, state)
+      newTodos[action.todo.id] = todo(undefined,action)
+      return newTodos
     case 'TOGGLE_TODO':
-      return state.map(t =>
+      return Object.keys(state).map(t =>
         todo(t, action)
       )
-    case 'ADDED_TODO':
-      console.log("todos ADDED_TODO");
 
-      return state.map(t =>
-        todo(t, action)
-      )
+      return Object.assign({}, state, {
+        completed: !state.completed
+      })
+
+      newTodos = Object.assign({}, state)
+      newTodos[action.todo.id] = todo(t, action)
+      return newTodos
+    case 'ADDED_TODO':
+      newTodos = Object.assign({}, state)
+      newTodos[action.todo.id] = todo(t, action)
+      return newTodos
     case 'RECEIVE_TODOS':
       console.log("receive_todos");
       console.log(action.todos);
       const todos = action.todos;
-      return [...todos];
+      return Object.assign({}, todos)
     default:
-      console.log(`default: state = ${state}`)
+      let stateString = JSON.stringify(state)
+      console.log(`default: state = ${stateString}`)
       return state
   }
 }

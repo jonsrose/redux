@@ -52,7 +52,7 @@ export const toggleTodo = (id) => {
     id
   }
 }
-
+/*
 export const receiveTodos = (json) => {
   console.log(json);
   return {
@@ -60,7 +60,7 @@ export const receiveTodos = (json) => {
     todos: json
   }
 }
-
+*/
 export const addedTodo = (json) => {
   console.log(json);
   return {
